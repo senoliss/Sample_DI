@@ -11,9 +11,9 @@ namespace WebApplication2.Controllers
     [ApiController]
     public class BookController : ControllerBase
     {
-        private readonly IBookDatabase _bookDataBase;
+        private readonly IBooksRepository _bookDataBase;
 
-        public BookController(IBookDatabase bookDataBase)
+        public BookController(IBooksRepository bookDataBase)
         {
             _bookDataBase = bookDataBase;
         }
