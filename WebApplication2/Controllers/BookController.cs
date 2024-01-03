@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Net.Mime;
 using WebApplication2.Databases;
 using WebApplication2.DTOs;
 using WebApplication2.Models;
@@ -18,13 +19,23 @@ namespace WebApplication2.Controllers
             _bookDataBase = bookDataBase;
         }
 
+        /// <summary>
+        /// Grazina visus todo irasus
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("list")]
-        public IEnumerable<Book> GetAll()
+        [Produces(MediaTypeNames.Application.Json)]
+        public IEnumerable<Book> GetAll()       // turetu grazinti IActionResult
         {
             var data = _bookDataBase.GetAll();
             return data;
         }
 
+        /// <summary>
+        /// Grazina todo itema pagal id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("single/{id}")]
         public Book GetSingleBook(int id)
         {
@@ -46,6 +57,10 @@ namespace WebApplication2.Controllers
             return data;
         }
 
+        /// <summary>
+        /// Iraso nauja irasa i duomenu baze ir issiuncia email
+        /// </summary>
+        /// <param name="book"></param>
         [HttpPost]
         public void CreateBook(Book book)
         {
